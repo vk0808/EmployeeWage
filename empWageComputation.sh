@@ -14,6 +14,22 @@ totalWorkHr=0
 day=1
 
 
+
+# Function to get working hrs
+function getWorkHrs(){
+        local empPresent=$1
+        local empHrs=0
+
+        # Selection
+        case $empPresent in
+                $IS_HALF_TIME) empHrs=4 ;;
+                $IS_FULL_TIME) empHrs=8 ;;
+                *) empHrs=0 ;;
+        esac
+        echo $empHrs
+}
+
+
 # Calculate monthly wage till total work hr has reached 100hrs
 while [ $day -le $MAX_WORK_DAYS ] && [ $totalWorkHr -lt $MAX_WORK_HRS ]
 do
@@ -23,11 +39,8 @@ do
 
 
 	# Determine work hour of the employee
-        case $empPresent in
-                $IS_HALF_TIME) empHrs=4 ;;
-                $IS_FULL_TIME) empHrs=8 ;;
-                *) empHrs=0 ;;
-        esac
+        # Function call
+        empHrs="$( getWorkHrs $empPresent )"
 
 
         # Calculation total work hour
