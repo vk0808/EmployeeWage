@@ -13,6 +13,7 @@ MAX_WORK_HRS=100
 totalWorkHr=0
 day=1
 
+declare -a dailyWage
 
 
 # Function to get working hrs
@@ -48,10 +49,14 @@ do
 
 
         # Calculation total salary
-	basePay=$(( empHrs * WAGE_PER_HR ))
-        salary=$(( basePay + salary ))
-
-
-	((day++))
+	dailyWage[((day++))]=$(( empHrs * WAGE_PER_HR ))
 
 done
+
+
+# Store the value
+salary=$(( totalWorkHr * WAGE_PER_HR ))
+
+
+# Print the result
+echo Daily Wages: ${dailyWage[*]}
