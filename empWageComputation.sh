@@ -13,7 +13,7 @@ MAX_WORK_HRS=100
 totalWorkHr=0
 day=1
 
-declare -a dailyWage
+declare -A dailyWage
 
 
 # Function to get working hrs
@@ -49,8 +49,10 @@ do
 
 
         # Calculation total salary
-	dailyWage[((day++))]=$(( empHrs * WAGE_PER_HR ))
+	dailyWage[day_$day]=$(( empHrs * WAGE_PER_HR ))
 
+
+	((day++))
 done
 
 
@@ -58,5 +60,14 @@ done
 salary=$(( totalWorkHr * WAGE_PER_HR ))
 
 
-# Print the result
-echo Daily Wages: ${dailyWage[*]}
+# Print the Employee work hr and salary
+echo Salary: $salary
+echo Total Working Hrs: $totalWorkHr
+
+
+# Print Employee Dailywage sheet
+
+for key in ${!dailyWage[*]};
+do
+        echo $key ${dailyWage[$key]}
+done
