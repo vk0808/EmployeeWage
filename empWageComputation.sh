@@ -12,14 +12,11 @@ empPresent=$(( RANDOM % 3 ))
 
 
 # Check if Employee is present or not
-if [ $empPresent -eq $IS_FULL_TIME ] ; then
-        empHrs=8
-elif [ $empPresent -eq $IS_HALF_TIME ]; then
-        empHrs=4
-else
-        empHrs=0
-fi
-
+case $empPresent in
+        $IS_HALF_TIME) empHrs=4 ;;
+        $IS_FULL_TIME) empHrs=8 ;;
+        *) empHrs=0 ;;
+esac
 
 # Calculation
 salary=$(( empHrs * WAGE_PER_HR ))
