@@ -4,15 +4,15 @@ echo "Welcome to the Employee Wage Computation"
 
 
 # Variables
+WAGE_PER_HR=20
 IS_HALF_TIME=1
 IS_FULL_TIME=2
-WAGE_PER_HR=20
+MAX_WORK_DAYS=20
 
-empPresent=$(( RANDOM % 3 ))
+totalWorkHr=0
 
 
-
-for ((day=1;day<=$MAX_WORK_DAYS;day++))
+for ((day=1; day<=$MAX_WORK_DAYS; day++))
 do
 
 	# Check if Employee is present or not
@@ -34,12 +34,5 @@ do
         # Calculation total salary
 	basePay=$(( empHrs * WAGE_PER_HR ))
         salary=$(( basePay + salary ))
+
 done
-
-
-
-
-
-
-# Calculation
-salary=$(( empHrs * WAGE_PER_HR ))
