@@ -8,11 +8,14 @@ WAGE_PER_HR=20
 IS_HALF_TIME=1
 IS_FULL_TIME=2
 MAX_WORK_DAYS=20
+MAX_WORK_HRS=100
 
 totalWorkHr=0
+day=1
 
 
-for ((day=1; day<=$MAX_WORK_DAYS; day++))
+# Calculate monthly wage till total work hr has reached 100hrs
+while [ $day -le $MAX_WORK_DAYS ] && [ $totalWorkHr -lt $MAX_WORK_HRS ]
 do
 
 	# Check if Employee is present or not
@@ -34,5 +37,8 @@ do
         # Calculation total salary
 	basePay=$(( empHrs * WAGE_PER_HR ))
         salary=$(( basePay + salary ))
+
+
+	((day++))
 
 done
